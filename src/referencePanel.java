@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.text.DateFormat;
 import java.util.Date;
 
 
@@ -22,6 +21,8 @@ public class referencePanel extends JPanel {
 
 
     final String int5gr1ty_2 = "1190de84d01ce12f0c54a01a4752a33e659efad4247b13fd5b4381a63307412f5350491e7f078aa5b24fb3f86f9f722cf9ac2dd2a28a779e467d323d0b1aef605==";
+    //dw bout it
+
 
     private referencePanel() {
 
@@ -32,18 +33,17 @@ public class referencePanel extends JPanel {
         setLayout(new MigLayout()); //miglayout is OG
 
 
-        CC cc = new CC(); //component constraint
+        CC cc = new CC(); //component constraint, its a miglayout thing
         cc.alignX("center").spanX();
 
         title = new JLabel("<html><h1 style=\"text-align:center\">J-Reference</h1><p><br/>A timesaver for database journal citations.</p></html>", SwingConstants.CENTER);
         add(title, cc);        //adding panel components
         url1 = new JTextField(30);
-        //url1.setBackground(new Color(255,228,196));
         add(url1, cc);
 
         ButtonGroup group = new ButtonGroup();
         JRadioButton apa = new JRadioButton("APA 6th Edition");
-        JRadioButton mla = new JRadioButton("MLA 8th Edition");
+        JRadioButton mla = new JRadioButton("MLA 8th Edition"); //radio buttons are pretty dank
         group.add(apa);
         group.add(mla);
         apa.addActionListener(new ActionListener() {
@@ -51,6 +51,8 @@ public class referencePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Apa = true;
                 Mla = false;
+                //i could just use one boolean, but this is a citation generator, not a game. ill use
+                // as many bytes as i want.
             }
         });
         mla.addActionListener(new ActionListener() {
@@ -71,31 +73,28 @@ public class referencePanel extends JPanel {
         instructions = new JLabel("<html><p style=\"text-align:center\">Paste the url of the journal article above and press Cite when <br> you're ready!</p></html>", SwingConstants.CENTER);
         add(instructions, cc);
 
-        JPanel subpanel2 = new JPanel();
+        JPanel subpanel2 = new JPanel(); //did you know jlabels support html formatting? well now you do
         cite = new JEditorPane("text/html", "Your citation will appear here! Everything is already in Times New Roman size 12 :)");
         cite.setPreferredSize(new Dimension(430, 120));
         cite.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-        add(cite, cc);
+        add(cite, cc); //why are my var names so weird lol
 
         about = new JButton("About");
         about.addActionListener(new ActionListener() {
             int count = 0;
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { //about section and button
                 count++;
-                JOptionPane.showMessageDialog(null, "jAPA-Java Citation generator coded on IntelliJ \n" +
-                        "using JSoup HTML parser and MiGLayout Library.\n\nVersion 1.5\n\nConcept and Coding" +
-                        " by Allen Nguyen", "About me", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "jAPA-Java Citation generator coded on IntelliJ \n" + "using JSoup HTML parser and MiGLayout Library.\n\nVersion 1.7\n\nConcept and Coding" + " by Allen Nguyen", "About me", JOptionPane.INFORMATION_MESSAGE);
                 if (count > 40) {
-                    about.setText("every click ur mum +1 gay");
+                    about.setText("every click ur mum +1 gay"); //hehe easter egg for you filthy nerds
                     count = 40;
                 }
             }
         });
 
         add(about, cc);
-
 
 
     }
@@ -115,8 +114,7 @@ public class referencePanel extends JPanel {
             org.jsoup.Connection.Response response = null;
             try {
                 response = Jsoup.connect(url1.getText()).timeout(100000) //get error code
-                        .ignoreHttpErrors(true)
-                        .execute();
+                        .ignoreHttpErrors(true).execute();
                 doc = Jsoup.connect(url1.getText()).get(); //get html from database
 
             } catch (IOException f) {
@@ -127,7 +125,7 @@ public class referencePanel extends JPanel {
             }
 
 
-            if (url1.getText().contains("sciencedirect")) {
+            if (url1.getText().contains("sciencedirect")) { //lol half the time i dont know what im typing
 
 
                 if (Apa && !Mla) {
@@ -135,10 +133,10 @@ public class referencePanel extends JPanel {
 
                     String name = "";
                     if (names.length != 1) {
-                        for (int a = 0; a < names.length; a++) { //todo problem here for 6+ authors: see SD class
+                        for (int a = 0; a < names.length; a++) {
                             if (a == names.length - 1) {
-                                name += "& " + names[a];
-                            } else if (a == 7) {
+                                name += "& " + names[a];   //commas are very important so i left 12 lines of code for it
+                            } else if (a == 6) {
                                 name += " et al.";
                                 break;
                             } else if (a < (names.length - 2)) {
@@ -155,7 +153,7 @@ public class referencePanel extends JPanel {
                     if (!vols[1].equals("none"))
                         cite.setText("<html><p>" + name + " " + date + title + "<i>" + journal + ", " + vols[0] + "</i>(" + vols[1] + "). " + DOI + "</p></html>");
                     else
-                        cite.setText("<html><p>" + name + " " + date + title + "<i>" + journal + ", " + vols[0] + "</i>. " + DOI + "</p></html>"); //volume to volume(issue)
+                        cite.setText("<html><p>" + name + " " + date + title + "<i>" + journal + ", " + vols[0] + "</i>. \n" + DOI + "</p></html>"); //volume to volume(issue)
                 } else if (!Apa && Mla) {
                     getMLAScienceDirect(doc);
 

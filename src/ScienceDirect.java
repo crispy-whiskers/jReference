@@ -21,7 +21,7 @@ public class ScienceDirect {
                 d = p.matcher(firstinit[a]);
 
                 if (d.find()) {
-                    init += firstinit[a].substring(d.start(), d.end());
+                    init += firstinit[a].substring(d.start(), d.end()); //why is regex so wack
                 }
             }
         }
@@ -43,13 +43,13 @@ public class ScienceDirect {
         String init = "";
         Pattern p = Pattern.compile("\\b[a-zA-Z]");
         Matcher d;
-
+        //duude, i know this code is horrendous and messy but shut up, it works
 
         String names = "";
         String holder[] = init.split("");
 
         if (lastnames.length == 1)
-            names = lastnames[0] + ", " + firstname[0] + ".";
+            names = lastnames[0] + ", " + firstname[0] + ".";    //just formatting, idk why im doing it this way
         else if(lastnames.length==2)
             names=lastnames[0] + ", " + firstname[0] + " and "+firstname[1]+" "+lastnames[1];
         else
@@ -61,7 +61,7 @@ public class ScienceDirect {
 
 
     public static String Date(org.jsoup.nodes.Document doc) {
-        String date = doc.getElementsByClass("size-m").text();
+        String date = doc.getElementsByClass("text-xs").text();
 
         Pattern datepattern = Pattern.compile("\\d\\d\\d\\d");
         Matcher m = datepattern.matcher(date); //just parse for teh year
@@ -73,7 +73,7 @@ public class ScienceDirect {
     }
 
     public static String[] Volume(org.jsoup.nodes.Document doc) {
-        String vol = doc.getElementsByClass("size-m").text(); //
+        String vol = doc.getElementsByClass("text-xs").text(); //
         Pattern vi = Pattern.compile("(Volume\\s\\d+,\\s[^Issue])"); //find vol and issue number
         Pattern vi2 = Pattern.compile("(Volume\\s\\d+,\\sIssue\\s\\d+)");
         Matcher m = vi.matcher(vol); //first regex to find case issue and volume
@@ -101,14 +101,14 @@ public class ScienceDirect {
 
         } else {
             String response[] = {"Journal Num Not found", "Journal Num Not found"};
-            return response;
+            return response; //haha im bad at coding
         }
         return numberarray;
 
     }
     public static String Pages(org.jsoup.nodes.Document doc){
-        String text = doc.getElementsByClass("size-m").text();
-        Pattern pg = Pattern.compile("\\d+-\\d+");
+        String text = doc.getElementsByClass("text-xs").text();
+        Pattern pg = Pattern.compile("\\d+-\\d+");  //parse for pages
         Matcher m = pg.matcher(text);
         if(m.find()){
             return m.group();
