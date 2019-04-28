@@ -15,7 +15,7 @@ So first, you give the url to the program and select the type of citation.
 
 The program then fetches the entire html document from the url (given it is from sciencedirect). Using the JSoup html parsing library, the program parses for each element of the page that contains info part of the citation. Each element contains text, which is fetched by JSoup. The text is further formatted and spliced and edited so it fits into the stupid APA guidelines. The final Frankenstein-like string is then pushed through a JTextArea with some html formatting.  
 
-The fact that I worked on this for ~3 weeks is probably why I barely survived the English smartr assessment.
+The fact that I worked on this for ~3 weeks is probably why I barely survived my English citations assessment.
 
 # Support
 
