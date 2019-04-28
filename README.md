@@ -1,7 +1,7 @@
 # jReference
 Hi if you're reading this, please stop because the code you are about to see is absolutely atrocious. 
 
-You can download it at j-reference.sites.tjhsst.edu 
+You can download it at https://j-reference.sites.tjhsst.edu 
 
 So what am I supposed to do here?
 
