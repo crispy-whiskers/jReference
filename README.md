@@ -1,29 +1,12 @@
-# jReference
-Hi if you're reading this, please stop because the code you are about to see is absolutely atrocious. 
+# Why did I make this project?
+So it was really late at night and I was writing this paper but I had to cite like a billion articles. Now, the thing is, nearly all these articles are from international authors. With international authors come ridiculously long winded names that spit in the face of standard English proununciation and word structure conventions. I know a thing called noodletools exists, but I am NOT about to copy some Indian nerd's 25-letter last name that is apparently derived from his great grand uncle's British officer or the last names of 39 unlucky, dead Italian grandfathers who have had their name shamelessly slapped at the end of a lab assistant who sees daylight once a week.
 
-You can download it at https://j-reference.sites.tjhsst.edu 
-
-So what am I supposed to do here?
-
-I guess I'll go ahead and describe whats going on behind the screen.
+# How does it work?
+It's a web scraper. Retrieve webpage, poke the HTML a bit, pick bits out that you want, jamble it all together in the mess that is called APA style or MLA style.
 
 
-# How it works
-
-So first, you give the url to the program and select the type of citation.  
-
-
-The program then fetches the entire html document from the url (given it is from sciencedirect). Using the JSoup html parsing library, the program parses for each element of the page that contains info part of the citation. Each element contains text, which is fetched by JSoup. The text is further formatted and spliced and edited so it fits into the stupid APA guidelines. The final Frankenstein-like string is then pushed through a JTextArea with some html formatting.  
-
-The fact that I worked on this for ~3 weeks is probably why I barely survived my English citations assessment.
-
-# Support
-
-If you find bugs, please for the love of god, send an email to nguyen.k.allen@gmail.com detailing the bug and if you find it, the code that causes the bug. 
-
-Questions? send them to the same email, its already cluttered and im lonely, so dont be scared to shoot some questions to my empty inbox.  
-
-
+# Is this really a useful project?
+Nah.
 Wow, its really late. I should probably stop writing this.
 
 
