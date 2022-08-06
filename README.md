@@ -11,7 +11,10 @@ Wow, its really late. I should probably stop writing this.
 
 
 
+# Update (2022)
+Ok, look I was a high school freshman with about 2 hours of Java experience when I wrote this. 
 
+No, it no longer works. Probably better that way.
 
 
 
